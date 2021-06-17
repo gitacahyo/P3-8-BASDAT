@@ -1,4 +1,6 @@
-<?php 
+<?php
+session_start();
+
 require 'C:/xampp/htdocs/jo&co-web/functions.php';
 $user = query("SELECT * FROM user");
 ?>
@@ -59,7 +61,7 @@ $user = query("SELECT * FROM user");
     </style>
     <!-- //ganti ikon tab website  -->
     <link href='../logo_fix.png' rel='shortcut icon'>
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -87,6 +89,7 @@ $user = query("SELECT * FROM user");
                         <b> SKINEY.CO </b>
                     </a>
                 </li>
+                <br></br>
                 <li>
                     <a href="../data_user/daftar_user.php">User</a>
                 </li>
@@ -100,7 +103,7 @@ $user = query("SELECT * FROM user");
                     <a href="../konsultasi/daftar_konsultasi.php">Konsultasi</a>
                 </li>
                 <li>
-                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>              
+                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>
                 </li>
             </ul>
         </div>
@@ -130,7 +133,7 @@ $user = query("SELECT * FROM user");
                                 <td> <?= $i ?> </td>
                                 <td>
                                     <a href="ubah_user.php?id=<?= $row["id"]; ?>"> Ubah </a> |
-                                    <a href="hapus_user.php?id=<?= $row["id"]; ?>"> Hapus </a>              
+                                    <a href="hapus_user.php?id=<?= $row["id"]; ?>"> Hapus </a>
                                 </td>
                                 <td> <?= $row["nama_lengkap"]; ?> </td>
                                 <td> <?= $row["username"]; ?> </td>
