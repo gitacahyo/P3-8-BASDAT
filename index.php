@@ -1,6 +1,38 @@
 <?php
     session_start();
     include "koneksi.php";
+
+    //sudah login? direct ke dashboard
+    if( isset($_SESSION["login"]) ){
+      header("Location: dashboard.php");
+      exit;
+    }
+
+    //koneksi ke dashboard
+    if (isset($_POST['fmasuk'])) {
+        $username = $_POST['fusername'];
+        $password = $_POST['fpassword'];
+        $result = mysqli_query($koneksi, "SELECT * FROM user
+                                        WHERE username = '$username'");
+                                        //AND password = '$password
+        //cek username
+        if ( mysqli_num_rows($result) ===1 ) {
+          //cek password
+          $row = mysqli_fetch_assoc($result);
+          if( password_verify($password,$row["password"])  ){
+            //set session
+            $_SESSION["login"] = true;
+            $_SESSION["user"] = $row["nama_lengkap"];
+
+            header("Location: dashboard.php");
+          }
+        }
+        $error = true;
+      ///  else {
+      ///      echo "Maaf username dan password anda tidak sesuai! Harap coba lagi.";
+      ///  }
+
+    }
 ?>
 
 
@@ -9,7 +41,7 @@
 <head>
 <title> Login SKINEY.CO </title>
     <meta charset="utf-8">
-    <style type="text/css">  
+    <style type="text/css">
         body {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             background: url('bg.jpg');
@@ -95,33 +127,23 @@
     <form method="post">
     <div class="login">
     <h1 class="teal"> <center> Halaman Login SKINEY.CO </center> </h1>
-        <label for="username">Username: </label> <br> 
-		<input type="text" name="fusername" placeholder="Masukkan username anda" required/> <br> <br>
-        <label for="password"> Sandi: </label> 
-        <input type="password" name="fpassword" id="password" placeholder="Masukkan sandi Anda" required> <br> <br>
+
+    <!-- ngasih tau kalau ada yang error-->
+    <?php if( isset($error) ) : ?>
+      <p style="font-weight:bold; color:red">Username / Password salah</p>
+    <?php endif; ?>
+
+        <label for="username">Username: </label> <br>
+		      <input type="text" name="fusername" id="fusername" placeholder="Masukkan username anda"> <br> <br>
+        <label for="password"> Sandi: </label>
+          <input type="password" name="fpassword" id="fpassword" placeholder="Masukkan sandi anda"> <br> <br>
         <p class="btn">
             <button class="btn first" type="submit" name="fmasuk"> Login </button> <br> <br>
 		</p>
     </form>
-<!-- //koneksi ke dashboard  -->
-    <?php
-        if (isset($_POST['fmasuk'])) {
-            $username = $_POST['fusername'];
-            $password = $_POST['fpassword'];
-            $qry = mysqli_query($koneksi, "SELECT * FROM user 
-                                            WHERE username = '$username' 
-                                            AND password = md5('$password')");
-            $cek = mysqli_num_rows($qry);
-            if ($cek==1) {
-                $_SESSION['userweb']=$username;
-                header ("location:dashboard.php");
-                exit;
-            }
-            else {
-                echo "Maaf username dan password anda tidak sesuai! Harap coba lagi.";
-            }
-
-        }
-    ?>
+    <form action="registrasi.php">
+      <h4>Belum Mendaftar?</h4>
+      <button type="submit" class="btn btn-primary">Daftar</button> <br> </br>
+    </form>
 </body>
 </html>
