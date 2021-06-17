@@ -1,9 +1,18 @@
-<?php 
+<?php
 //Koneksi ke database
 $koneksi = mysqli_connect("localhost", "root", "", "joco");
 
+function isEmpty ($value){
+  if( $value == ''){
+    echo "<script>
+      alert('Data tidak ada yang boleh kosong!');
+      location.href = location.href;
+    </script>";
+    exit;
+  }
+}
 
-function query($query) {
+function query ($query) {
     global $koneksi;
     $result = mysqli_query($koneksi, $query);
     $rows = [];
@@ -37,10 +46,10 @@ function registrasi($data) {
 
     //enkripsi password
     $password = password_hash($password, PASSWORD_DEFAULT);
-    
+
     //tambahkan username ke database
-    mysqli_query($koneksi, "INSERT INTO user(nama_lengkap, username, password, jenis_kelamin, jenis_kulit) 
-                        VALUES ('$nama_lengkap', '$username', '$password', '$jenis_kelamin', '$jenis_kulit' )"); 
+    mysqli_query($koneksi, "INSERT INTO user(nama_lengkap, username, password, jenis_kelamin, jenis_kulit)
+                        VALUES ('$nama_lengkap', '$username', '$password', '$jenis_kelamin', '$jenis_kulit' )");
     return mysqli_affected_rows($koneksi);
 }
 
@@ -79,10 +88,10 @@ function ubahkonsultasi($data) {
     $catatan_konsultasi = htmlspecialchars($data["catatan_konsultasi"]);
 
     $query = "UPDATE konsultasi SET
-                jenis_konsultasi = '$jenis_konsultasi', 
-                tanggal_konsultasi = '$tanggal_konsultasi', 
-                dokter_pj = '$dokter_pj', 
-                waktu_mulai = '$waktu_mulai', 
+                jenis_konsultasi = '$jenis_konsultasi',
+                tanggal_konsultasi = '$tanggal_konsultasi',
+                dokter_pj = '$dokter_pj',
+                waktu_mulai = '$waktu_mulai',
                 waktu_selesai = '$waktu_selesai'
                 WHERE id = $id";
     mysqli_query($koneksi, $query);
@@ -100,10 +109,10 @@ function ubahproduk($data) {
     $id_user = htmlspecialchars($data["id_user"]);
 
     $query = "UPDATE produk SET
-                nama_produk = '$nama_produk', 
-                jenis_produk = '$jenis_produk', 
-                no_bpom = '$no_bpom', 
-                bahan_aktif = '$bahan_aktif', 
+                nama_produk = '$nama_produk',
+                jenis_produk = '$jenis_produk',
+                no_bpom = '$no_bpom',
+                bahan_aktif = '$bahan_aktif',
                 keterangan = '$keterangan'
                 id_user = '$id_user'
                 WHERE id = $id";
@@ -119,8 +128,8 @@ function ubahdokter($data) {
     $biaya_konsultasi = htmlspecialchars($data["biaya_konsultasi"]);
 
     $query = "UPDATE dokter_spkk SET
-                nama_dokter = '$nama_dokter', 
-                email = '$email', 
+                nama_dokter = '$nama_dokter',
+                email = '$email',
                 biaya_konsultasi = '$biaya_konsultasi',
                 WHERE id = $id";
     mysqli_query($koneksi, $query);
@@ -137,10 +146,10 @@ function ubahuser($data) {
     $jenis_kulit = $data["jenis_kulit"];
 
     $query = "UPDATE user SET
-                nama_lengkap = '$nama_lengkap', 
-                usernam = '$username', 
-                password = '$password', 
-                jenis_kelamin = '$jenis_kelamin', 
+                nama_lengkap = '$nama_lengkap',
+                usernam = '$username',
+                password = '$password',
+                jenis_kelamin = '$jenis_kelamin',
                 jenis_kulit = '$jenis_kulit'
                 WHERE id = $id";
     mysqli_query($koneksi, $query);
@@ -149,4 +158,3 @@ function ubahuser($data) {
 
 
 ?>
-
