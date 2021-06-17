@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 require 'C:/xampp/htdocs/jo&co-web/functions.php';
 $produk = query("SELECT * FROM produk");
 ?>
@@ -59,7 +60,7 @@ $produk = query("SELECT * FROM produk");
     </style>
     <!-- //ganti ikon tab website  -->
     <link href='../logo_fix.png' rel='shortcut icon'>
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -87,6 +88,7 @@ $produk = query("SELECT * FROM produk");
                         <b> SKINEY.CO </b>
                     </a>
                 </li>
+                <br></br>
                 <li>
                     <a href="../data_user/daftar_user.php">User</a>
                 </li>
@@ -100,7 +102,7 @@ $produk = query("SELECT * FROM produk");
                     <a href="../konsultasi/daftar_konsultasi.php">Konsultasi</a>
                 </li>
                 <li>
-                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>              
+                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>
                 </li>
             </ul>
         </div>
@@ -133,7 +135,7 @@ $produk = query("SELECT * FROM produk");
                                 <td>
                                     <a href="ubah_produk.php?id=<?= $row["id"]; ?>"> Ubah </a> |
                                     <a href="hapus_produk.php?id=<?= $row["id"]; ?>"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"> Hapus </a>              
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"> Hapus </a>
                                 </td>
                                 <td> <?= $row["nama_produk"]; ?> </td>
                                 <td> <?= $row["jenis_produk"]; ?> </td>
