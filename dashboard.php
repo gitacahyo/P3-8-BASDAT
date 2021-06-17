@@ -1,5 +1,8 @@
-<?php 
-require 'C:/xampp/htdocs/jo&co-web/functions.php';
+<?php
+session_start();
+
+include('C:/xampp/htdocs/jo&co-web/functions.php');
+//require 'C:/xampp/htdocs/jo&co-web/functions.php';
 $produk = query("SELECT * FROM produk");
 ?>
 
@@ -34,12 +37,12 @@ $produk = query("SELECT * FROM produk");
     </style>
     <!-- //ganti ikon tab website  -->
     <link href='logo_fix.png' rel='shortcut icon'>
-    
+
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="bootstrap/css/simple-sidebar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,6 +65,7 @@ $produk = query("SELECT * FROM produk");
                         <b> SKINEY.CO </b>
                     </a>
                 </li>
+                <br></br>
                 <li>
                     <a href="data_user/daftar_user.php">User</a>
                 </li>
@@ -75,7 +79,7 @@ $produk = query("SELECT * FROM produk");
                     <a href="konsultasi/daftar_konsultasi.php">Konsultasi</a>
                 </li>
                 <li>
-                <a href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>              
+                <a href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>
                 </li>
             </ul>
         </div>
