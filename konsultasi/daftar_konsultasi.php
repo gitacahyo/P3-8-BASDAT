@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 require '../functions.php';
 $konsultasi = query("SELECT * FROM konsultasi");
 ?>
@@ -60,7 +61,7 @@ $konsultasi = query("SELECT * FROM konsultasi");
     </style>
     <!-- //ganti ikon tab website  -->
     <link href='../logo_fix.png' rel='shortcut icon'>
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -88,6 +89,7 @@ $konsultasi = query("SELECT * FROM konsultasi");
                         <b> SKINEY.CO </b>
                     </a>
                 </li>
+                <br></br>
                 <li>
                     <a href="../data_user/daftar_user.php">User</a>
                 </li>
@@ -101,7 +103,7 @@ $konsultasi = query("SELECT * FROM konsultasi");
                     <a href="../konsultasi/daftar_konsultasi.php">Konsultasi</a>
                 </li>
                 <li>
-                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>              
+                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>
                 </li>
             </ul>
         </div>
@@ -133,7 +135,7 @@ $konsultasi = query("SELECT * FROM konsultasi");
                                 <td> <?= $i ?> </td>
                                 <td>
                                     <a href="ubah_konsultasi.php?id=<?= $row["id"]; ?>"> Ubah </a> |
-                                    <a href="hapus_konsultasi.php?id=<?= $row["id"]; ?>"> Hapus </a>              
+                                    <a href="hapus_konsultasi.php?id=<?= $row["id"]; ?>"> Hapus </a>
                                 </td>
                                 <td> <?= $row["jenis_konsultasi"]; ?> </td>
                                 <td> <?= $row["tanggal_konsultasi"]; ?> </td>
