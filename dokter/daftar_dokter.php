@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 require 'C:/xampp/htdocs/jo&co-web/functions.php';
 $dokter = query("SELECT * FROM dokter_spkk");
 ?>
@@ -58,7 +59,7 @@ $dokter = query("SELECT * FROM dokter_spkk");
     </style>
     <!-- //ganti ikon tab website  -->
     <link href='../logo_fix.png' rel='shortcut icon'>
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -86,6 +87,7 @@ $dokter = query("SELECT * FROM dokter_spkk");
                         <b> SKINEY.CO </b>
                     </a>
                 </li>
+                <br></br>
                 <li>
                     <a href="../data_user/daftar_user.php">User</a>
                 </li>
@@ -99,7 +101,7 @@ $dokter = query("SELECT * FROM dokter_spkk");
                     <a href="../konsultasi/daftar_konsultasi.php">Konsultasi</a>
                 </li>
                 <li>
-                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>              
+                <a href="../logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');"> Logout </a>
                 </li>
             </ul>
         </div>
@@ -128,7 +130,7 @@ $dokter = query("SELECT * FROM dokter_spkk");
                                 <td> <?= $i ?> </td>
                                 <td>
                                     <a href="ubah_dokter.php?id=<?= $row["id"]; ?>"> Ubah </a> |
-                                    <a href="hapus_dokter.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"> Hapus </a>              
+                                    <a href="hapus_dokter.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"> Hapus </a>
                                 </td>
                                 <td> <?= $row["nama_dokter"]; ?> </td>
                                 <td> <?= $row["email"]; ?> </td>
